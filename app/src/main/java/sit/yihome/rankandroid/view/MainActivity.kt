@@ -13,8 +13,8 @@ import sit.yihome.rankandroid.viewmodel.WelfareViewModel
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    @Inject
-    private lateinit var welfareFragment:Lazy<WelfareViewModel>
+//    @Inject
+//    private lateinit var welfareFragment:Lazy<WelfareViewModel>
 
     private lateinit var viewModel:MainViewModel
     private val welfareClickListener = View.OnClickListener {
