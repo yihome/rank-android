@@ -13,7 +13,7 @@ public class DataStuck{
 
     @Test
     fun testCalculator() {
-        Assert.assertEquals(20, calculator("9+(3-1)*3+10/2"))
+        Assert.assertEquals(19, calculator("9+(3-1)*3+8/2"))
     }
 
     fun calculator(expr: String):Int {
