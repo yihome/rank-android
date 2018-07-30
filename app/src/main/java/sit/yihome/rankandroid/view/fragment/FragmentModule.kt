@@ -10,7 +10,6 @@ import sit.yihome.rankandroid.injections.annotation.ActivityScope
 @Module
 class FragmentModule{
 
-    @ActivityScope
     @Provides
     fun provideWelfareFragment():WelfareFragment{
         return WelfareFragment()

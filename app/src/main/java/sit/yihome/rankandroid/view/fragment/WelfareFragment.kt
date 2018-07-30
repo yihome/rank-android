@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,13 +31,16 @@ class WelfareFragment: Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recycler_view.adapter = WelfareAdater()
-        recycler_view.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL,false)
+        recycler_view.layoutManager = StaggeredGridLayoutManager(2,RecyclerView.VERTICAL )
 
         viewmodel = ViewModelProviders.of(this).get(WelfareViewModel::class.java)
         viewmodel.init()
         viewmodel.getWelfare().observe(this, Observer<List<WelfareBean>> { welfares ->
 
             (recycler_view.adapter as WelfareAdater).setWelfareList(welfares)
+            recycler_view.post {
+                recycler_view.scrollToPosition(0);
+            }
         })
     }
 }

@@ -1,4 +1,4 @@
-package sit.yihome.rankandroid.datastructure
+package sit.yihome.rankandroid.personstudy.datastructure
 
 import org.junit.Test
 
