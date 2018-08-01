@@ -3,13 +3,17 @@ package sit.yihome.rankandroid.view.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
+import sit.yihome.rankandroid.R
+import sit.yihome.rankandroid.viewmodel.bean.LiveUpdateWrapper
 import sit.yihome.rankandroid.viewmodel.bean.WelfareBean
 import sit.yihome.rankandroid.wrapper.ImageWapper
+
 
 /**
  * Created by houyi on 2018/3/15.
@@ -23,6 +27,15 @@ class WelfareAdater() : RecyclerView.Adapter<WelfareAdater.WelfareViewHold>() {
         notifyDataSetChanged()
     }
 
+    fun setWelfareList(welfareList: LiveUpdateWrapper<WelfareBean>?) {
+        welfares = welfareList?.getTotalList()
+        if(!welfareList?.isUpdate!!){
+            notifyDataSetChanged()
+        }else{
+            notifyItemRangeInserted(welfareList.getInsertPosition(),welfareList.getInsertCount())
+        }
+    }
+
     override fun getItemCount(): Int {
         return welfares?.size ?: 0
     }
@@ -30,16 +43,16 @@ class WelfareAdater() : RecyclerView.Adapter<WelfareAdater.WelfareViewHold>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WelfareViewHold {
         context = parent.context
-        val v = ImageView(parent.context)
-        val layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
-        v.layoutParams = layoutParams
+        val v = LayoutInflater.from(context).inflate(R.layout.welfare_item_view,null)
         return WelfareViewHold(v)
     }
 
     override fun onBindViewHolder(holder: WelfareViewHold, position: Int) {
-        ImageWapper.loadImg(context, welfares!![position].url, holder.itemView as ImageView)
+        ImageWapper.loadImg(context, welfares!![position].url, holder.img)
     }
 
-    class WelfareViewHold(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class WelfareViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val img:ImageView = itemView.findViewById(R.id.img_welfare)
+    }
 }
 

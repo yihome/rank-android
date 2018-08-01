@@ -5,5 +5,5 @@ package sit.yihome.rankandroid.viewmodel.bean
  */
 class BeanWrapper<T>(){
     val error = false
-    lateinit var results:List<T>
+    lateinit var results:MutableList<T>
 }

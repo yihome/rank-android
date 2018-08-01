@@ -1,10 +1,13 @@
 package sit.yihome.rankandroid.wrapper
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.support.annotation.RawRes
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 
 /**
  * Created by houyi on 2018/3/15.
@@ -12,9 +15,16 @@ import com.bumptech.glide.request.RequestOptions
 object ImageWapper {
     fun loadImg(context:Context,url:String,img : ImageView){
         Glide.with(context)
+                .asBitmap()
                 .load(url)
-                .apply(RequestOptions()
-                        .fitCenter())
-                .into(img)
+                .into(object:SimpleTarget<Bitmap>(){
+                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                        val layoutParams = img.layoutParams
+                        layoutParams.height = (img.width*resource.height*1.0/resource.width).toInt()
+                        img.layoutParams = layoutParams
+                        img.setImageBitmap(resource)
+                    }
+
+                })
     }
 }
