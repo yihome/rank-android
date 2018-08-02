@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RankAndroid</string>
     <string name="welfare">福利</string>
+    <string name="my">我的</string>
 </resources>

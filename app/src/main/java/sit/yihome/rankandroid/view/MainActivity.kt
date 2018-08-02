@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 TabLayout.TabItem(getString(R.string.welfare),R.drawable.selector_tabitem_movie, welfareClickListener))
         tablayout_main_bottom.addTab(TabLayout.TabItem(getString(R.string.welfare),R.drawable.selector_tabitem_movie))
         tablayout_main_bottom.addTab(TabLayout.TabItem(getString(R.string.welfare),R.drawable.selector_tabitem_movie))
-        tablayout_main_bottom.addTab(TabLayout.TabItem(getString(R.string.welfare),R.drawable.selector_tabitem_movie))
+        tablayout_main_bottom.addTab(TabLayout.TabItem(getString(R.string.my),R.drawable.selector_tabitem_personal))
         tablayout_main_bottom.initSelection(viewModel.currentPage)
     }
 
