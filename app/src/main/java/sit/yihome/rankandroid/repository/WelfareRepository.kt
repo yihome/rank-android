@@ -20,7 +20,6 @@ class WelfareRepository @Inject constructor(netApi: NetApi) {
 
     companion object {
         fun getUrl(): String {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
 
         const val FIRST_PAGE: Int = 1
