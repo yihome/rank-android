@@ -19,6 +19,10 @@ class WelfareRepository @Inject constructor(netApi: NetApi) {
     private var nextPage = FIRST_PAGE+1
 
     companion object {
+        fun getUrl(): String {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
         const val FIRST_PAGE: Int = 1
     }
 

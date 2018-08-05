@@ -14,4 +14,9 @@ class FragmentModule{
     fun provideWelfareFragment():WelfareFragment{
         return WelfareFragment()
     }
+
+    @Provides
+    fun provideMyFragment():MyFragment{
+        return MyFragment()
+    }
 }

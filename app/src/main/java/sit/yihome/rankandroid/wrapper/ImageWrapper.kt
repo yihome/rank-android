@@ -6,14 +6,15 @@ import android.support.annotation.RawRes
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.AppWidgetTarget
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 
 /**
  * Created by houyi on 2018/3/15.
  */
-object ImageWapper {
-    fun loadImg(context:Context,url:String,img : ImageView){
+object ImageWrapper {
+    fun loadImgWithHeight(context:Context,url:String,img : ImageView){
         Glide.with(context)
                 .asBitmap()
                 .load(url)
@@ -26,5 +27,19 @@ object ImageWapper {
                     }
 
                 })
+    }
+
+    fun loadImg(context:Context,url:String,img : ImageView){
+        Glide.with(context)
+                .asBitmap()
+                .load(url)
+                .into(img)
+    }
+
+    fun loadImgToRemote(context: Context, url: String, appWidgetTarget: AppWidgetTarget) {
+        Glide.with(context)
+                .asBitmap()
+                .load(url)
+                .into(appWidgetTarget)
     }
 }

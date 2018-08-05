@@ -6,13 +6,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
 import sit.yihome.rankandroid.R
 import sit.yihome.rankandroid.viewmodel.bean.LiveUpdateWrapper
 import sit.yihome.rankandroid.viewmodel.bean.WelfareBean
-import sit.yihome.rankandroid.wrapper.ImageWapper
+import sit.yihome.rankandroid.wrapper.ImageWrapper
 
 
 /**
@@ -48,7 +46,7 @@ class WelfareAdater() : RecyclerView.Adapter<WelfareAdater.WelfareViewHold>() {
     }
 
     override fun onBindViewHolder(holder: WelfareViewHold, position: Int) {
-        ImageWapper.loadImg(context, welfares!![position].url, holder.img)
+        ImageWrapper.loadImgWithHeight(context, welfares!![position].url, holder.img)
     }
 
     class WelfareViewHold(itemView: View) : RecyclerView.ViewHolder(itemView){
