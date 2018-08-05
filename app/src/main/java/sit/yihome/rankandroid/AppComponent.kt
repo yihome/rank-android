@@ -12,6 +12,6 @@ import sit.yihome.rankandroid.network.NetModule
 @ApplicationScope
 @Component(modules = [NetModule::class])
 interface AppComponent {
-    fun get(welFareModule: WelFareModule): WelfareComponent
+//    fun get(welFareModule: WelFareModule): WelfareComponent
 
 }

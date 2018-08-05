@@ -19,7 +19,7 @@ class WelfareViewModel : ViewModel() {
 
     lateinit var welfares:LiveData<LiveUpdateWrapper<WelfareBean>>
     fun init(){
-        RankApplication.getAppCompent().get(WelFareModule()).inject(this)
+        RankApplication.getWelfareComponent().inject(this)
         welfares = welfareRepository.getWelfare()
     }
 

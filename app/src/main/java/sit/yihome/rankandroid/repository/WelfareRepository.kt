@@ -15,17 +15,13 @@ import javax.inject.Inject
 /**
  * Created by houyi on 2018/3/15.
  */
-class WelfareRepository @Inject constructor(netApi: NetApi) {
+class WelfareRepository @Inject constructor(private val netApi: NetApi) {
     private var nextPage = FIRST_PAGE+1
+    private var welfareCache:List<WelfareBean>? = null
 
     companion object {
-        fun getUrl(): String {
-        }
-
         const val FIRST_PAGE: Int = 1
     }
-
-    private val netApi: NetApi = netApi
 
     fun getWelfare(): LiveData<LiveUpdateWrapper<WelfareBean>> {
         return getWelfare(FIRST_PAGE, false, null)
@@ -48,6 +44,9 @@ class WelfareRepository @Inject constructor(netApi: NetApi) {
                     value?.addLast(response?.body()?.results)
                     welfare.value = value
                 }else {
+                    if(page==1){
+                        welfareCache = response?.body()?.results
+                    }
                     welfare.value = LiveUpdateWrapper(response?.body()?.results)
                 }
             }
@@ -59,4 +58,13 @@ class WelfareRepository @Inject constructor(netApi: NetApi) {
     fun loadMoreWelfare(welfares: MutableLiveData<LiveUpdateWrapper<WelfareBean>>){
         getWelfare(nextPage, true, welfares)
     }
+
+    fun getWelfareCache(): List<WelfareBean>? {
+        if(welfareCache!=null){
+            return welfareCache!!
+        }
+//        getWelfare()
+        return null
+    }
+
 }
