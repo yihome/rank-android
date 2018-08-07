@@ -4,8 +4,8 @@ import android.app.Application
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
-import sit.yihome.rankandroid.injections.DaggerWelfareComponent
-import sit.yihome.rankandroid.injections.WelfareComponent
+import sit.yihome.rankandroid.injections.component.AppComponent
+import sit.yihome.rankandroid.injections.component.DaggerAppComponent
 
 
 /**
@@ -13,7 +13,6 @@ import sit.yihome.rankandroid.injections.WelfareComponent
  */
 class RankApplication: Application() {
     private lateinit var appComponent: AppComponent
-    private lateinit var welfareComponent: WelfareComponent
 
     override fun onCreate() {
         super.onCreate()
@@ -38,15 +37,10 @@ class RankApplication: Application() {
 
     private fun initAppComponent() {
         appComponent = DaggerAppComponent.builder().build()
-        welfareComponent = DaggerWelfareComponent.builder().build()
     }
 
     fun getAppComponent(): AppComponent {
         return appComponent
-    }
-
-    fun getWelfareComponent(): WelfareComponent {
-        return welfareComponent
     }
 
     companion object {
@@ -57,10 +51,6 @@ class RankApplication: Application() {
 
         fun getAppComponent(): AppComponent {
             return app.getAppComponent()
-        }
-
-        fun getWelfareComponent(): WelfareComponent {
-            return app.getWelfareComponent()
         }
     }
 }

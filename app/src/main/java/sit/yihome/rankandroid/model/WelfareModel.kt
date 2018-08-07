@@ -1,4 +1,4 @@
-package sit.yihome.rankandroid.repository
+package sit.yihome.rankandroid.model
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -15,7 +15,7 @@ import javax.inject.Inject
 /**
  * Created by houyi on 2018/3/15.
  */
-class WelfareRepository @Inject constructor(private val netApi: NetApi) {
+class WelfareModel @Inject constructor(private val netApi: NetApi) {
     private var nextPage = FIRST_PAGE+1
     private var welfareCache:List<WelfareBean>? = null
 

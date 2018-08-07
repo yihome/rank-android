@@ -1,4 +1,4 @@
-package sit.yihome.rankandroid
+package sit.yihome.rankandroid.injections.module
 
 import android.app.Application
 import dagger.Module

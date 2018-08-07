@@ -3,9 +3,7 @@ package sit.yihome.rankandroid.viewmodel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import sit.yihome.rankandroid.RankApplication
-import sit.yihome.rankandroid.injections.WelFareModule
-import sit.yihome.rankandroid.repository.WelfareRepository
+import sit.yihome.rankandroid.model.WelfareModel
 import sit.yihome.rankandroid.viewmodel.bean.LiveUpdateWrapper
 import sit.yihome.rankandroid.viewmodel.bean.WelfareBean
 import javax.inject.Inject
@@ -15,12 +13,11 @@ import javax.inject.Inject
  */
 class WelfareViewModel : ViewModel() {
     @Inject
-    lateinit var welfareRepository:WelfareRepository
+    lateinit var welfareModel:WelfareModel
 
     lateinit var welfares:LiveData<LiveUpdateWrapper<WelfareBean>>
     fun init(){
-        RankApplication.getWelfareComponent().inject(this)
-        welfares = welfareRepository.getWelfare()
+        welfares = welfareModel.getWelfare()
     }
 
     fun getWelfare(): LiveData<LiveUpdateWrapper<WelfareBean>>{
@@ -28,6 +25,6 @@ class WelfareViewModel : ViewModel() {
     }
 
     fun loadMoreWelfare() {
-        welfareRepository.loadMoreWelfare(welfares as MutableLiveData<LiveUpdateWrapper<WelfareBean>>)
+        welfareModel.loadMoreWelfare(welfares as MutableLiveData<LiveUpdateWrapper<WelfareBean>>)
     }
 }

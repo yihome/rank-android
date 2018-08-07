@@ -1,5 +1,6 @@
 package sit.yihome.rankandroid.view
 
+import android.app.Application
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,7 +9,8 @@ import com.orhanobut.logger.Logger
 import dagger.Lazy
 import kotlinx.android.synthetic.main.activity_main.*
 import sit.yihome.rankandroid.R
-import sit.yihome.rankandroid.view.fragment.DaggerFragmentComponent
+import sit.yihome.rankandroid.RankApplication
+import sit.yihome.rankandroid.injections.module.WelfareVMModule
 import sit.yihome.rankandroid.view.fragment.MyFragment
 import sit.yihome.rankandroid.view.fragment.WelfareFragment
 import sit.yihome.rankandroid.viewmodel.MY_PAGE
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        DaggerFragmentComponent.builder().build().inject(this)
+        RankApplication.getAppComponent().get(WelfareVMModule(welfareFragment.get())).inject(this)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         initFragment()
         initTab()

@@ -1,7 +1,6 @@
 package sit.yihome.rankandroid.receiver
 
 import android.app.PendingIntent
-import android.app.PendingIntent.FLAG_ONE_SHOT
 import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
@@ -13,8 +12,7 @@ import com.bumptech.glide.request.target.AppWidgetTarget
 import com.orhanobut.logger.Logger
 import sit.yihome.rankandroid.R
 import sit.yihome.rankandroid.RankApplication
-import sit.yihome.rankandroid.injections.WelFareModule
-import sit.yihome.rankandroid.repository.WelfareRepository
+import sit.yihome.rankandroid.model.WelfareModel
 import sit.yihome.rankandroid.viewmodel.bean.WelfareBean
 import sit.yihome.rankandroid.wrapper.ImageWrapper
 import javax.inject.Inject
@@ -58,7 +56,7 @@ class ImageWidgetProvider : AppWidgetProvider() {
 
     class WidgetImageContainer {
         @Inject
-        lateinit var welfareRepository: WelfareRepository
+        lateinit var welfareModel: WelfareModel
         var welfareCache: List<WelfareBean>?
         private val urlMap: MutableMap<Int, Int> = HashMap()
 
@@ -66,8 +64,8 @@ class ImageWidgetProvider : AppWidgetProvider() {
 
         init {
             container = this
-            RankApplication.getWelfareComponent().inject(this)
-            welfareCache = welfareRepository.getWelfareCache()
+            RankApplication.getAppComponent().inject(this)
+            welfareCache = welfareModel.getWelfareCache()
         }
 
         fun getImageUrl(id: Int): String {
@@ -83,7 +81,7 @@ class ImageWidgetProvider : AppWidgetProvider() {
             urlMap[id] = transform(position)
             Logger.d("image Position: ${urlMap[id]}")
             if (welfareCache == null || welfareCache!!.isNotEmpty()) {
-                welfareCache = welfareRepository.getWelfareCache()
+                welfareCache = welfareModel.getWelfareCache()
             }
             val url: String? = welfareCache?.get(transform(position))?.url
             return url ?: "http://ww1.sinaimg.cn/large/0065oQSqgy1ftt7g8ntdyj30j60op7dq.jpg"

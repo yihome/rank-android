@@ -15,6 +15,5 @@
         android:id="@+id/txt_tabitem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/primaryTextColor" />
+        android:layout_marginTop="8dp"/>
 </LinearLayout>
